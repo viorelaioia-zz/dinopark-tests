@@ -1,0 +1,6 @@
+pyotp==2.2.7
+PyPOM==2.2.0
+pytest==4.3.0
+pytest-variables==1.7.1
+pytest-selenium==1.16.0
+pytest-xdist==1.26.1
