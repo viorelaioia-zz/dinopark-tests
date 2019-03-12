@@ -8,7 +8,7 @@ from pages.auth0 import Auth0
 class Base(Page):
 
     _user_menu_locator = (By.CSS_SELECTOR, '.show-more__button.top-bar__user-menu-toggle')
-    _my_profile_menu_locator = (By.CSS_SELECTOR, '.user-menu__items a[href="/beta/p/fiji"]')
+    _my_profile_menu_locator = (By.CSS_SELECTOR, '.user-menu__items a')
 
     def __init__(self, selenium, base_url, locale='en-US', **url_kwargs):
         super(Base, self).__init__(selenium, base_url, locale=locale, **url_kwargs)

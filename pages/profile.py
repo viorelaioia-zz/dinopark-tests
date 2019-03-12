@@ -5,7 +5,7 @@ from pages.base import Base
 
 class Profile(Base):
     _profile_picture_locator = (By.CSS_SELECTOR, '.user-picture.user-picture--large')
-    _edit_profile_intro_button_locator = (By.CSS_SELECTOR, '.profile__intro-photo>button')
+    _edit_profile_intro_button_locator =  (By.CSS_SELECTOR, '.profile__intro .profile__edit-button')
     _first_name_input_field_locator = (By.ID, 'field-first-name')
     _save_button_locator = (By.CSS_SELECTOR, '.button-bar button[type="submit"]')
     _name_locator = (By.CSS_SELECTOR, '.profile__name h1')
