@@ -51,7 +51,6 @@ class TestProfile():
         edit_profile.save_intro()
         assert initial_alternative_name != profile.alternative_name
 
-
     @pytest.mark.nondestructive
     def test_edit_fun_job_title(self, selenium, base_url):
         homepage = Homepage(selenium, base_url).open()
@@ -63,3 +62,15 @@ class TestProfile():
         edit_profile.add_fun_job_title("make fun of bugs")
         edit_profile.save_intro()
         assert initial_fun_job_title != profile.fun_job_title
+
+    @pytest.mark.nondestructive
+    def test_change_privacy_for_first_name(self, selenium, base_url):
+        homepage = Homepage(selenium, base_url).open()
+        homepage.login("email", "password", "secret_seed")
+        profile = homepage.go_to_my_profile()
+        assert profile.is_profile_picture_shown
+        edit_profile = profile.edit_profile_intro()
+        initial_privacy = edit_profile.first_name_privacy
+        edit_profile.set_privacy_for_first_name("Public")
+        edit_profile.save_intro()
+        assert edit_profile.first_name_privacy != initial_privacy
