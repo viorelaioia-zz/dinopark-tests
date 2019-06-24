@@ -13,10 +13,16 @@ class EditProfile(Base):
     _timezone_field_locator = (By.ID, 'field-timezone')
     _bio_field_locator = (By.ID, 'field-bio')
     _save_button_locator = (By.CSS_SELECTOR, '.button-bar button[type="submit"]')
+    _first_name_privacy_locator = (By.CSS_SELECTOR, 'button[aria-controls="option-list-field-first-name-privacy"]')
+    _first_name_privacy_options_locator = (By.CSS_SELECTOR, '#option-list-field-first-name-privacy label')
 
     @property
     def alternative_name(self):
         return self.find_element(*self._alternative_name_field_locator).get_attribute()
+
+    @property
+    def first_name_privacy(self):
+        return self.find_element(*self._first_name_privacy_locator).get_attribute('title')
 
     def add_first_name(self, first_name):
         first_name_input = self.find_element(*self._first_name_input_field_locator)
@@ -44,3 +50,11 @@ class EditProfile(Base):
 
     def save_intro(self):
         self.find_element(*self._save_button_locator).click()
+
+    def click_first_name_privacy(self):
+        self.find_element(*self._first_name_input_field_locator)
+
+    def set_privacy_for_first_name(self, privacy):
+        self.find_element(*self._first_name_privacy_locator).click()
+        [option.click() for option in
+         self.find_elements(*self._first_name_privacy_options_locator) if option.text == privacy]
