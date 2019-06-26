@@ -74,3 +74,15 @@ class TestProfile():
         edit_profile.set_privacy_for_first_name("Public")
         edit_profile.save_intro()
         assert edit_profile.first_name_privacy != initial_privacy
+
+    @pytest.mark.nondestructive
+    def test_add_primary_phone_number(self, selenium, base_url):
+        homepage = Homepage(selenium, base_url).open()
+        homepage.login("email", "password", "secret_seed")
+        profile = homepage.go_to_my_profile()
+        assert profile.is_profile_picture_shown
+        edit_contact = profile.edit_contact_section()
+        edit_contact.click_add_phone()
+        edit_contact.select_phone_type("Mobile")
+        edit_contact.enter_phone_number("400748430222")
+        edit_contact.save_contact_section()

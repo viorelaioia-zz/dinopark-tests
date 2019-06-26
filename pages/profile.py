@@ -1,6 +1,7 @@
 from selenium.webdriver.common.by import By
 
 from pages.base import Base
+from pages.edit_contact import EditContact
 from pages.edit_profile import EditProfile
 
 
@@ -11,6 +12,7 @@ class Profile(Base):
     _alternative_name_locator = (By.CSS_SELECTOR, '.profile__alternative-name')
     _fun_job_title_locator = (By.CSS_SELECTOR, '.profile__fun-title')
     _save_confirmation_message_locator = (By.CSS_SELECTOR, '.toast__content')
+    _edit_contact_button_locator = (By.CSS_SELECTOR, 'a[href="/e?section=contact"]')
 
     @property
     def is_profile_picture_shown(self):
@@ -31,3 +33,7 @@ class Profile(Base):
     def edit_profile_intro(self):
         self.find_element(*self._edit_profile_intro_button_locator).click()
         return EditProfile(self.selenium, self.base_url)
+
+    def edit_contact_section(self):
+        self.find_element(*self._edit_contact_button_locator).click()
+        return EditContact(self.selenium, self.base_url)
