@@ -12,7 +12,7 @@ class EditAccounts(Base):
     def click_add_accounts (self):
         self.find_element(*self._add_accounts_button_locator).click()
 
-    def add_account_value (self, discourse_account):
+    def add_account_value(self, discourse_account):
         account_input = self.find_element(*self._discourse_account_field_locator)
         account_input.clear()
         account_input.send_keys(discourse_account)

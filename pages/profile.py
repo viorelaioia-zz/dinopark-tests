@@ -8,7 +8,7 @@ from pages.edit_languages import EditLanguages
 
 class Profile(Base):
     _profile_picture_locator = (By.CSS_SELECTOR, '.user-picture.user-picture--large')
-    _edit_profile_intro_button_locator =  (By.CSS_SELECTOR, '.profile__intro .edit-button')
+    _edit_profile_intro_button_locator = (By.CSS_SELECTOR, '.profile__intro .edit-button')
     _name_locator = (By.CSS_SELECTOR, '.profile__name h1')
     _alternative_name_locator = (By.CSS_SELECTOR, '.profile__alternative-name')
     _fun_job_title_locator = (By.CSS_SELECTOR, '.profile__fun-title')
