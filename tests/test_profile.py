@@ -74,3 +74,41 @@ class TestProfile():
         edit_profile.set_privacy_for_first_name("Public")
         edit_profile.save_intro()
         assert edit_profile.first_name_privacy != initial_privacy
+
+    @pytest.mark.nondestructive
+    def test_select_timezone(self, selenium, base_url):
+        homepage = Homepage(selenium, base_url).open()
+        homepage.login("email", "password", "secret_seed")
+        profile = homepage.go_to_my_profile()
+        assert profile.is_profile_picture_shown
+        edit_profile = profile.edit_profile_intro()
+        timezone = "Europe/Bucharest"
+        edit_profile.select_timezone(timezone)
+        edit_profile.save_intro()
+        assert profile.timezone == timezone
+        edit_profile = profile.edit_profile_intro()
+        edit_profile.delete_timezone()
+        edit_profile.save_intro()
+
+    @pytest.mark.nondestructive
+    def test_edit_accounts(self, selenium, base_url):
+        homepage = Homepage(selenium, base_url).open()
+        homepage.login("email", "password", "secret_seed")
+        profile = homepage.go_to_my_profile()
+        assert profile.is_profile_picture_shown
+        edit_accounts = profile.edit_accounts()
+        edit_accounts.click_add_accounts()
+        edit_accounts.add_account_value("testing")
+        edit_accounts.save_accounts()
+
+    @pytest.mark.nondestructive
+    def test_edit_languages(self, selenium, base_url):
+        homepage = Homepage(selenium, base_url).open()
+        homepage.login("email", "password", "secret_seed")
+        profile = homepage.go_to_my_profile()
+        assert profile.is_profile_picture_shown
+        edit_languages = profile.edit_languages()
+        edit_languages.click_add_languages()
+        edit_languages.add_language_value("french")
+        edit_languages.click_submit_button()
+        edit_languages.save_languages()
